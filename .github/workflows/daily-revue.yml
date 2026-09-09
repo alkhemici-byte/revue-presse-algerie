@@ -7,31 +7,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  generate-and-send:
+  generate:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Generate and send revue
+      - run: npm install
+      - name: Generate revue
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
         run: node generate-revue.js
-      
-      - name: Upload reports
+      - uses: actions/upload-artifact@v3
         if: always()
-        uses: actions/upload-artifact@v3
         with:
-          name: revue-presse-reports
+          name: reports
           path: reports/
-          retention-days: 30
