@@ -1,0 +1,14 @@
+json
+{
+  "name": "revue-presse-algerie",
+  "version": "1.0.0",
+  "description": "Automation revue de presse quotidienne",
+  "main": "generate-revue.js",
+  "scripts": {
+    "start": "node generate-revue.js"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.7",
+    "pdfkit": "^0.13.0"
+  }
+}
