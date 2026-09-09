@@ -1,11 +1,9 @@
 yaml
 name: Daily Revue de Presse
-
 on:
   schedule:
     - cron: '30 7 * * *'
   workflow_dispatch:
-
 jobs:
   generate:
     runs-on: ubuntu-latest
